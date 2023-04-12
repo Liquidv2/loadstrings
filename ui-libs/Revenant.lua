@@ -826,12 +826,11 @@ function library:Window(Info)
         end)
 
         function insidedropdown:Set(tbl)
-            DropdownSize = 0
-
             for k,button in ipairs(self["buttons"]) do
                 button:Destroy()
             end
-
+            
+            DropdownSize = 0
             for _,item in pairs(tbl) do
                 self:Button({
                     Text = item
