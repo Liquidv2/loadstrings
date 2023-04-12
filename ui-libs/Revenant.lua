@@ -731,6 +731,8 @@ function library:Window(Info)
         local Opened = false
         dropdownButton.MouseButton1Click:Connect(function()
             Opened = not Opened
+
+            if insidedropdown.PreClick then insidedropdown:PreClick(Opened) end
             
             TweenService:Create(dropdownContainerButton, TweenInfo.new(.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Rotation = Opened and 0 or 180}):Play()
             
@@ -738,6 +740,8 @@ function library:Window(Info)
             TweenService:Create(dropdownContainerBackground, TweenInfo.new(.15, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {Size = Opened and UDim2.new(0, 225,0,DropdownSize) or UDim2.new(0, 225, 0, 0)}):Play()
             TweenService:Create(dropdownContainer, TweenInfo.new(.15, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {Size = Opened and UDim2.new(0, 225,0,DropdownSize) or UDim2.new(0, 225, 0, 0)}):Play()
             dropdownFixLine1.Visible = Opened
+
+            if insidedropdown.Click then insidedropdown:Click(Opened) end
         end)
 
         insidedropdown["buttons"] = {}
