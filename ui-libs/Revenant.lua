@@ -821,6 +821,7 @@ function library:Window(Info)
 
         dropdownContainer.ChildAdded:Connect(function(v)
             if v.ClassName ~= "UIListLayout" then
+                printconsole("DROPSIZE: " .. tostring(DropdownSize))
                 DropdownSize = DropdownSize + 27
             end
         end)
