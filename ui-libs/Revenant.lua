@@ -614,6 +614,8 @@ function library:Window(Info)
         Info.Callback = Info.Callback or function() end
 
         local insidedropdown = {}
+        function insidedropdown:PreClick(opened) end
+        function insidedropdown:Click(opened) end
 
         local DropdownSize = 0
             
@@ -732,7 +734,7 @@ function library:Window(Info)
         dropdownButton.MouseButton1Click:Connect(function()
             Opened = not Opened
 
-            if insidedropdown.PreClick then insidedropdown:PreClick(Opened) end
+            insidedropdown:PreClick(Opened)
             
             TweenService:Create(dropdownContainerButton, TweenInfo.new(.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Rotation = Opened and 0 or 180}):Play()
             
@@ -741,7 +743,7 @@ function library:Window(Info)
             TweenService:Create(dropdownContainer, TweenInfo.new(.15, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {Size = Opened and UDim2.new(0, 225,0,DropdownSize) or UDim2.new(0, 225, 0, 0)}):Play()
             dropdownFixLine1.Visible = Opened
 
-            if insidedropdown.Click then insidedropdown:Click(Opened) end
+            insidedropdown:Click(Opened)
         end)
 
         insidedropdown["buttons"] = {}
